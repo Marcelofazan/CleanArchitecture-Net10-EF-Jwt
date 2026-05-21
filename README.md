@@ -34,11 +34,11 @@ Add-Migration InitialCreate -Project "InfraEstrutura" -StartupProject "SistemaER
 Update-Database -Project "InfraEstrutura" -StartupProject "SistemaERPOnlineForcaDeVendasAPI.WebAPI"
 ```
 
-#### Execução da Aplicação
+#### Executar a Aplicação
 
-- Após o Migrations, executa a aplicação **https://localhost:7092/Swagger/index.html** (ou na porta exibida no terminal). 
+- Após o Migrations, executar a aplicação **https://localhost:7092/Swagger/index.html** (ou na porta exibida no terminal). 
 
-- O banco SQLite **(`SistemaERPOnlineForcaDeVendasAPI.db`)** é criado na raiz do projeto na primeira execução.
+- O banco SQLite **(`SistemaERPOnlineForcaDeVendasAPI.db`)** é criado na raiz do projeto, após o (Build).
 
 #### 🧪 Execução Inicial de Endpoints
 
