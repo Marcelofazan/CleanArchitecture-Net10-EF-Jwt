@@ -1,4 +1,4 @@
-## 🚀 Api10-EF-Jwt-CleanArch
+## 🚀 Api10-EF-Jwt
 Exemplo de criação de WebAPI com Clean Arquitetura com autenticação e autorização utilizando JWT com banco de dados SQLite
 
 #### O que você vai encontrar neste projeto
