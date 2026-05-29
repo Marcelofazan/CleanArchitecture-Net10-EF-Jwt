@@ -4,6 +4,11 @@
     ViewData["Title"] = "Login";
 }
 
+@if (ViewBag.Erro != null)
+{
+    <div class="alert alert-danger">@ViewBag.Erro</div>
+}
+
 <h2>Login</h2>
 
 <form asp-action="Login" method="post">

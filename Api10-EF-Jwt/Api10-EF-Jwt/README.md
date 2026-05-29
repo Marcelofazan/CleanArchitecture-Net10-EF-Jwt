@@ -33,7 +33,7 @@ Add-Migration InitialCreate -Project "InfraEstrutura" -StartupProject "SistemaER
 Update-Database -Project "InfraEstrutura" -StartupProject "SistemaERPOnlineForcaDeVendasAPI.WebAPI"
 ```
 
-#### 🔄 Executar a Aplicação
+#### Executar a Aplicação
 - Após o Migrations, executar a aplicação **https://localhost:7092/Swagger/index.html** (ou na porta exibida no terminal). 
 
 - O banco SQLite **(`SistemaERPOnlineForcaDeVendasAPI.db`)** é criado na raiz do projeto, após o (Build).
@@ -99,45 +99,7 @@ dotnet test SistemaERPOnlineForcaDeVendasAPI.Testes/SistemaERPOnlineForcaDeVenda
 ```
 Os testes cobrem a camada **Aplicacao** (ProdutoService), com mocks dos repositórios.
 
-#### ⚙️ Configuração
+#### Configuração
 - **Banco:** SQLite, arquivo `SistemaERPOnlineForcaDeVendasAPI.db` na raiz do projeto (não versionado). Connection string em `appsettings.json` (`ConnectionStrings:DefaultConnection`).
 - **JWT:** Em `appsettings.json`, substitua `Jwt:Key` por uma chave segura com **mínimo 32 caracteres** (ou defina a variável de ambiente `Jwt__Key`). Em produção use sempre variáveis de ambiente ou User Secrets.
-
-## 🌍 Frontend-Razor-Consumir-Api-Jwt
-Exemplo de criação de CRUD com Autenticação JWT em .NET8 Razor, para Consumo de API.
-
-#### O que você vai encontrar neste projeto
-| Tecnologia | Descrição |
-|-----------|-----------|
-| **JWT** | Uso de autorização em WebAPI |
-| **Razor** | Atua como o motor de renderização que combina C# com HTML para criar páginas dinâmicas |
-| **Service** | Prática utilizada com Interfaces e Injeção de Dependência para Arquitetura em Camadas (ou Clean Architecture ) |
-
-#### 🔄 Executar a aplicação
-Executar a aplicação Backend **https://github.com/Marcelofazan/API-EF10-JWT** que se encontra no Github.
-
-  - [API-EF10-JWT](https://github.com/Marcelofazan/API-EF10-JWT)
-  
-O banco de dados é SQLite **(`SistemaERPOnlineForcaDeVendasAPI.db`)** , onde será maninupado por essa aplicação como Frontend.
-
-#### 🧪 Executar Endpoints ( Inicial Obrigatório)
-
-**1 -dadosadmin.json** (Arquivo de configuração que consta no projeto)
-- Enviar POST / Registro para criação do usuario:**https://localhost:7092/api/auth/registro**, selecionar Guia Body e enviar RAW e enviar o seguinte JSON  
-
-```json
-{ 
-   "idempresa": 1, 
-   "email": "email@email.com", 
-   "senha": "123456", 
-   "nome": "Usuario", 
-   "taxapercentual": 10.00
-}
-```
-
-#### Rotas dos métodos 
-| Metodo | Descrição |
-|-----------|-----------|
-| Metodo: GET/POST | /api/Produtos  |
-| Metodo: GET/PUT/DELETE  | /api/Produtos/{id} |
 

@@ -1,5 +1,6 @@
 using consumirAPI.DTO;
 using consumirAPI.Models;
+using consumirAPI.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Net.Http.Headers;
@@ -11,17 +12,20 @@ namespace consumirAPI.Controllers
     public class HomeController : Controller
     {
         private readonly IHttpClientFactory _clientFactory;
-        private readonly IWebHostEnvironment _env;
 
-        public HomeController(IHttpClientFactory clientFactory, IWebHostEnvironment env)
+        public HomeController(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
-            _env = env;
         }
-
 
         [HttpGet]
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Registrar()
         {
             return View();
         }
@@ -50,7 +54,7 @@ namespace consumirAPI.Controllers
 
             var client = _clientFactory.CreateClient("APIClient");
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("api/auth/login", content);
+            var response = await client.PostAsync("api/Auth/login", content);
 
             if (response.IsSuccessStatusCode)
             {
@@ -68,38 +72,42 @@ namespace consumirAPI.Controllers
                 // Leia o conteúdo para entender o erro
                 var errorContent = await response.Content.ReadAsStringAsync();
                 Console.WriteLine($"Erro: {response.StatusCode} - {errorContent}");
+                ViewBag.Erro = "Registro não encontrado.";
 
                 ModelState.AddModelError(string.Empty, "Login falhou. Verifique suas credenciais.");
                 return View(loginViewModel);
             }
         }
 
-        public async Task<IActionResult> Registrar()
+        [HttpPost]
+        public async Task<IActionResult> Registrar(Usuario usuario)
         {
-            var client = _clientFactory.CreateClient("APIClient");
 
-            // Adicionar o token JWT no cabeçalho das requisições
-            var token = HttpContext.Session.GetString("JWToken");
-            if (!string.IsNullOrEmpty(token))
+            if (!ModelState.IsValid)
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                return View(usuario);
             }
 
-            var path = Path.Combine(_env.ContentRootPath, "dadosadmin.json");
-            var jsonString = System.IO.File.ReadAllText(path);
-            var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            var json = JsonSerializer.Serialize(new
+            {
+                idEmpresa = usuario.IdEmpresa,
+                email = usuario.Email,
+                senha = usuario.Senha,
+                nome = usuario.Nome,
+                taxaPercentual = usuario.TaxaPercentual,
+            });
 
-            var response = await client.PostAsync("api/auth/registro", content);
+            var client = _clientFactory.CreateClient("APIClient");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync("api/Auth/registro", content);
+
             if (response.IsSuccessStatusCode)
             {
-                ViewBag.Registro = "Registrado com sucesso.";
-            }
-            else
-            {
-                ViewBag.Registro = "Erro ao Registrar.";
+                // Redirecionar para a página de listagem de produtos
+                return RedirectToAction("Index", "Produto");
             }
 
-            return View("Index");
+            return View("Registrar");
         }
     }
 }

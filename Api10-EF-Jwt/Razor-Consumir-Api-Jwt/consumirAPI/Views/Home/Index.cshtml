@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Escolha uma das opções: </p>
+
+<div class="form-group">
+    <p class="mb-0">
+        <a href="@Url.Action("Registrar", "Home")" class="nav-link active">Registrar Usuário</a>
+    </p>
+    <p class="mb-1">
+        <a href="@Url.Action("Login", "Home")" class="nav-link active">Fazer Login</a>
+    </p>
+</div>
