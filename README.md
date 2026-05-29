@@ -33,7 +33,7 @@ Add-Migration InitialCreate -Project "InfraEstrutura" -StartupProject "SistemaER
 Update-Database -Project "InfraEstrutura" -StartupProject "SistemaERPOnlineForcaDeVendasAPI.WebAPI"
 ```
 
-#### Executar a Aplicação
+#### 🔄 Executar a Aplicação
 - Após o Migrations, executar a aplicação **https://localhost:7092/Swagger/index.html** (ou na porta exibida no terminal). 
 
 - O banco SQLite **(`SistemaERPOnlineForcaDeVendasAPI.db`)** é criado na raiz do projeto, após o (Build).
@@ -113,7 +113,7 @@ Exemplo de criação de CRUD com Autenticação JWT em .NET8 Razor, para Consumo
 | **Razor** | Atua como o motor de renderização que combina C# com HTML para criar páginas dinâmicas |
 | **Service** | Prática utilizada com Interfaces e Injeção de Dependência para Arquitetura em Camadas (ou Clean Architecture ) |
 
-#### Executar a aplicação
+#### 🔄 Executar a aplicação
 Executar a aplicação Backend **https://github.com/Marcelofazan/API-EF10-JWT** que se encontra no Github.
 
   - [API-EF10-JWT](https://github.com/Marcelofazan/API-EF10-JWT)
