@@ -6,9 +6,7 @@ Exemplo de criação de API em Clean Arquitetura com Autorização utilizando JW
 | Tecnologia | Descrição |
 |-----------|-----------|
 | **JWT** | Implementação de autenticação e autorização em WebAPI |
-| **Injeção de Dependência** |EntityFramework com utilização de Code First |
 | **Service** | Separação da criação de objetos e de sua reutilização, ideal para a realização de testes unitários |
-| **Testes Unitários** | Separação da criação de objetos e de sua reutilização, ideal para a realização de testes unitários |
 
 #### Requisitos do Projeto
 
