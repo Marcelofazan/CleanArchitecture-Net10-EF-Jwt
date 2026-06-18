@@ -7,7 +7,6 @@ Exemplo de Clean Architecture API com Autorização JWT em C# .NET 10 com banco 
 |-----------|-----------|
 | **Clean Architecture** | Organização do código em camadas, mantendo (as regras de negócio) totalmente independentes |
 | **JWT** | É um crachá digital usado para identificar usuários e trocar informações de forma segura entre computadores |
-| **Service** | Separação da criação de objetos e de sua reutilização, ideal para a realização de testes unitários |
 
 #### Requisitos do Projeto
 
