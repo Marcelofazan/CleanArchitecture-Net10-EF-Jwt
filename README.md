@@ -8,8 +8,9 @@ Exemplo de API Arquitetura Clean Architecture com Autenticação Jwt em C# .NET 
 | **Clean Architecture** | Organização do código em camadas, mantendo (as regras de negócio) totalmente independentes |
 | **JWT** | É um crachá digital usado para identificar usuários e trocar informações de forma segura entre computadores |
 
-#### 💬 Requisitos do Projeto
+## 📁 Api10-EF-Jwt
 
+#### 🔄 Executar a Aplicação
 No Visual Studio Abra (Ferramentas) > (Gerenciador de Pacotes NuGet) > (Console do Gerenciador de Pacotes Nuget)  
 Necessário para Atualizar o Depurador com a Solução. 
 
@@ -31,8 +32,6 @@ Add-Migration InitialCreate -Project "InfraEstrutura" -StartupProject "SistemaER
 Update-Database -Project "InfraEstrutura" -StartupProject "SistemaERPOnlineForcaDeVendasAPI.WebAPI"
 ```
 
-## 📁 Api10-EF-Jwt
-#### 🔄 Executar a Aplicação
 - Após o Migrations, executar a aplicação **https://localhost:7092/Swagger/index.html** (ou na porta exibida no terminal). 
 
 - O banco SQLite **(`SistemaERPOnlineForcaDeVendasAPI.db`)** é criado na raiz do projeto, após o (Build).
