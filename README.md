@@ -4,8 +4,8 @@ Exemplo de projeto Clean Architecture com Autenticação Jwt em C# .NET 10 com b
 | Tecnologia | Descrição |
 |-----------|-----------|
 | **Clean Architecture** | Organização do código em camadas, mantendo (as regras de negócio) totalmente independentes |
-| **CQRS** | É um padrão arquitetural que separa as operações de escrita (comandos) das operações de leitura (consultas) |
-| **JWT** | É um crachá digital usado para identificar usuários e trocar informações de forma segura entre computadores |
+| **CQRS** | Padrão arquitetural que separa as operações de escrita (comandos) das operações de leitura (consultas) |
+| **JWT** | Crachá digital usado para identificar usuários e trocar informações de forma segura entre computadores |
 
 ## 📁 Api10-EF-Jwt
 #### 🔄 Executar a Aplicação
