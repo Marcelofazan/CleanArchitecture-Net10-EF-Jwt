@@ -5,29 +5,47 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
-- task: NuGetToolInstaller@1
-  displayName: 'Instalar NuGet'
-
-- task: NuGetCommand@2
-  displayName: 'Restaurar Pacotes NuGet'
+# ==========================================
+# 1. RESTAURAR DEPENDÊNCIAS (.NET 8)
+# ==========================================
+- task: DotNetCoreCLI@2
+  displayName: 'Restaurar Pacotes Nuget'
   inputs:
-    restoreSolution: '**/*.sln'
+    command: 'restore'
+    projects: '**/*.sln'
 
-- task: VSBuild@1
-  displayName: 'Compilar Soluções e Separar Artefatos'
+# ==========================================
+# 2. PUBLICAR A API (Api10-EF-Jwt)
+# ==========================================
+- task: DotNetCoreCLI@2
+  displayName: 'Publicar - API'
   inputs:
-    solution: '**/*.sln'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
-    # O OutDir separa automaticamente o resultado de cada projeto compilado em subpastas próprias
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:OutDir="$(build.artifactStagingDirectory)\%(Filename)"'
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/Api10-EF-Jwt/**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)/API'
+    zipAfterPublish: true
 
+# ==========================================
+# 3. PUBLICAR O FRONT-END (Razor-Consumir-Api-Jwt)
+# ==========================================
+- task: DotNetCoreCLI@2
+  displayName: 'Publicar - FrontEnd'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/Razor-Consumir-Api-Jwt/**/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(build.artifactStagingDirectory)/FrontEnd'
+    zipAfterPublish: true
+
+# ==========================================
+# 4. DISPONIBILIZAR OS ARQUIVOS (Artefatos)
+# ==========================================
 - task: PublishBuildArtifacts@1
-  displayName: 'Disponibilizar Artefatos para Download'
+  displayName: 'Publicar Artefatos Finais'
   inputs:
     PathtoPublish: '$(build.artifactStagingDirectory)'
     ArtifactName: 'drop'
