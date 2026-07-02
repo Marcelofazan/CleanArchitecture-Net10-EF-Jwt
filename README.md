@@ -100,7 +100,7 @@ Os testes cobrem a camada **Aplicacao** (ProdutoService), com mocks dos reposit�
 - **JWT:** Em `appsettings.json`, substitua `Jwt:Key` por uma chave segura com **mínimo 32 caracteres** (ou defina a variável de ambiente `Jwt__Key`). Em produção use sempre variáveis de ambiente ou User Secrets.
 
 ## 📁 Razor-Consumir-Api-Jwt
-Exemplo de CRUD com Autenticação Jwt em C# ASP.NET Core 8.
+Exemplo de CRUD com Autenticação Jwt em Razor MVC C# ASP.NET Core 8.
 
 #### 🔄 Executar a aplicação
 Executar a aplicação Backend **https://github.com/Marcelofazan/API-EF10-JWT** que se encontra no Github.
